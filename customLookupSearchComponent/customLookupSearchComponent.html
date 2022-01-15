@@ -1,0 +1,49 @@
+<!--
+    @author            : Ayush Saxena
+    @last modified on  : 12-01-2022
+    @last modified by  : Ayush Saxena
+-->
+<template>
+    <div>
+        <div class="slds-form-element">
+            <div class="slds-form-element__control">
+                <div class="slds-combobox_container">
+                    <div id="box" class={Class} aria-expanded="true" aria-haspopup="listbox" role="combobox">
+                        <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                            <template if:true={isValSelect}>
+                                <!-- Show Selected value -->
+                                <lightning-pill class="pillSize" label={selectedValue} onremove={handleRemove}>
+                                    <lightning-icon icon-name={iconName}></lightning-icon>
+                                </lightning-pill>
+                            </template>
+                            <template if:false={isValSelect}>
+                                <div class="slds-p-top_none">
+                                    <!-- Search input box -->
+                                    <lightning-input class="slds-has-focus" type="search" value={searchValue} placeholder={searchPlaceholder}
+                                        onchange={handleOnChange} onblur={blurtime} onclick={handleOnClick} variant="label-hidden"></lightning-input>
+                                </div>
+                            </template>
+                            <div id="listbox-id-11" class="slds-dropdown slds-dropdown_fluid" role="listbox">
+                                <ul class="slds-listbox slds-listbox_vertical slds-dropdown_length-5 customClass" tabindex="0" role="presentation">
+                                    <template for:each={optionsToDisplay} for:item="option">
+                                        <!-- li to display each option in the list -->
+                                        <li key={option.Id} role="presentation" class="slds-listbox__item"
+                                        data-label={option.Name} data-name={option.Name} data-id={option.Id} onclick={optionsClickHandler}>
+                                            <div id={option.Id} class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small" role="option">
+                                                <lightning-icon class="slds-icon slds-icon--small slds-icon-text-default" icon-name={iconName} size="small"></lightning-icon>
+                                                <span class="slds-p-left_medium slds-truncate">
+                                                    <span>{option.Name}</span>
+                                                </span>
+                                            </div>
+                                        </li>
+                                        <!--/ li to display each option in the list -->
+                                    </template>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
